@@ -39,6 +39,10 @@ func main() {
 
 	router.Post("/files/{fileName}", controller.writeFile)
 
+	router.Get("/jsonEcho", controller.jsonEcho)
+
+	router.Post("/postJson", controller.postJson)
+
 	httpServer.AddRouter(router)
 
 	const PORT = 4221

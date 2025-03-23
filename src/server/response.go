@@ -1,6 +1,8 @@
 package server
 
 import (
+	"encoding/json"
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -82,6 +84,19 @@ func OkResponse(ctx Context) HttpResponse {
 func OkResponseWithText(ctx Context, text string) HttpResponse {
 	response := OkResponse(ctx)
 	response.setData([]byte(text), "text/plain")
+	return response
+}
+
+func OkResponseWithJson(ctx Context, data any) HttpResponse {
+	jsonData, err := json.Marshal(data)
+
+	if err != nil {
+		fmt.Println("Failed to encode as JSON", err)
+		return InternalServerErrorResponse(ctx)
+	}
+
+	response := OkResponse(ctx)
+	response.setData([]byte(jsonData), "application/json")
 	return response
 }
 

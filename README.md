@@ -22,6 +22,8 @@ Framework is built in pretty easy way similar to already existing frameworks suc
 
 ## How to run locally:
 
+You need to have a golang installed on our machine compatible with the version specified in go.mod.
+
 1. Clone repository
 2. Run using start_server.sh script
 3. Framework code is made within server directory

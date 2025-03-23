@@ -71,3 +71,31 @@ func (controller RequestController) writeFile(ctx server.Context) server.HttpRes
 
 	return server.CreatedResponse(ctx)
 }
+
+func (controller RequestController) jsonEcho(ctx server.Context) server.HttpResponse {
+	return server.OkResponseWithJson(ctx, map[string]interface{}{
+		"name": "Anton",
+		"age": 24,
+	})
+}
+
+type Person struct {
+	Name    string `json:"name"`
+	Age     int    `json:"age"`
+	Address string `json:"address"`
+}
+
+func (controller RequestController) postJson(ctx server.Context) server.HttpResponse {
+	person := Person{}
+	err := server.ParseJSONRequest(ctx.Request, &person)
+
+	if err != nil {
+		fmt.Println("Failed to parse request body")
+		return server.BadRequestResponse(ctx)
+	}
+
+	return server.OkResponseWithJson(ctx, map[string]interface{}{
+		"success": true,
+		"person": person,
+	})
+}

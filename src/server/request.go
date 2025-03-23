@@ -2,6 +2,7 @@ package server
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"net"
 	"strings"
@@ -87,4 +88,13 @@ func NewRequest(connection net.Conn) (HttpRequest, error) {
 	}
 
 	return request, nil
+}
+
+// Generic function to parse a JSON byte array into a target object
+func ParseJSONRequest[T any](request HttpRequest, target *T) error {
+	err := json.Unmarshal(request.Body, target)
+	if err != nil {
+		return fmt.Errorf("error unmarshaling JSON: %w", err)
+	}
+	return nil
 }
