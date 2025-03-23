@@ -13,7 +13,7 @@ func gzipCompress(data []byte) ([]byte, error) {
 	gzipWriter.Close()
 
 	compressedData := b.Bytes()
-	
+
 	return compressedData, nil
 }
 

@@ -13,7 +13,7 @@ func sendResponse(connection net.Conn, response HttpResponse) error {
 	}
 
 	connection.Write([]byte(fmt.Sprintf("%s %d %s\r\n", response.HttpVersion, response.Code, statusCodeMessage)))
-	
+
 	if response.Headers != nil {
 		for headerKey, headerValue := range response.Headers {
 			connection.Write([]byte(fmt.Sprintf("%s: %s\r\n", headerKey, headerValue)))

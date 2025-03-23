@@ -29,8 +29,8 @@ var STATUS_CODE_TO_MESSAGE_MAP = map[int]string{
 type HttpResponse struct {
 	HttpVersion string
 	Code        int
-	Headers map[string]string
-	Data []byte
+	Headers     map[string]string
+	Data        []byte
 }
 
 func (response *HttpResponse) setData(data []byte, contentType string) {
@@ -62,8 +62,8 @@ func (response *HttpResponse) setEncoding(ctx Context) {
 func NewResponse(ctx Context, statusCode int) HttpResponse {
 	response := HttpResponse{
 		HttpVersion: ctx.Request.HttpVersion,
-		Code: statusCode,
-		Headers: make(map[string]string),
+		Code:        statusCode,
+		Headers:     make(map[string]string),
 	}
 
 	response.setEncoding(ctx)

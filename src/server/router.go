@@ -66,7 +66,7 @@ func extractPathParameter(input string) (bool, string) {
 func (router Router) findHandler(request HttpRequest) *RequestHandler {
 	handlersForMethod, handlersExistForMethod := router.handlersPerMethod[request.Method]
 
-	if (!handlersExistForMethod) {
+	if !handlersExistForMethod {
 		fmt.Println("Not found handler for method", request.Method)
 		return nil
 	}

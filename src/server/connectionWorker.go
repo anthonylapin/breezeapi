@@ -7,12 +7,12 @@ import (
 )
 
 type ConnectionWorkerRegistry struct {
-	wg *sync.WaitGroup
+	wg   *sync.WaitGroup
 	jobs chan net.Conn
 }
 
 const (
-	WORKER_POOL = 1000
+	WORKER_POOL    = 1000
 	JOB_QUEUE_SIZE = 20000
 )
 
@@ -22,7 +22,7 @@ func newConnectionWorkerRegistry() ConnectionWorkerRegistry {
 	fmt.Printf("Creating worker registry with %d workers and %d queue size\n", WORKER_POOL, JOB_QUEUE_SIZE)
 
 	registry := ConnectionWorkerRegistry{
-		wg: &wg,
+		wg:   &wg,
 		jobs: make(chan net.Conn, JOB_QUEUE_SIZE),
 	}
 

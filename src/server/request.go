@@ -12,8 +12,8 @@ type HttpRequest struct {
 	Path        string
 	HttpVersion string
 	Headers     map[string]string
-	PathParams map[string]string
-	Body []byte
+	PathParams  map[string]string
+	Body        []byte
 }
 
 func (request *HttpRequest) parseRequestLine(requestLine string) error {
@@ -76,7 +76,7 @@ func NewRequest(connection net.Conn) (HttpRequest, error) {
 	if contentLengthExists {
 		contentLength := 0
 		fmt.Sscanf(contentLengthStr, "%d", &contentLength)
-		
+
 		request.Body = make([]byte, contentLength)
 		_, err := reader.Read(request.Body)
 

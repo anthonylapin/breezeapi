@@ -25,23 +25,23 @@ func (controller RequestController) userAgent(ctx server.Context) server.HttpRes
 
 func (controller RequestController) getFile(ctx server.Context) server.HttpResponse {
 	fileDir, fileDirExists := controller.CLIArgs["fileDirectory"]
-		
-		if !fileDirExists {
-			return server.NotFoundResponse(ctx)
-		}
 
-		fileName := ctx.Request.PathParams["fileName"]
-		filePath := path.Join(fileDir, fileName)
+	if !fileDirExists {
+		return server.NotFoundResponse(ctx)
+	}
 
-		fmt.Println(filePath)
-		
-		fileData, err := os.ReadFile(filePath)
+	fileName := ctx.Request.PathParams["fileName"]
+	filePath := path.Join(fileDir, fileName)
 
-		if err != nil {
-			return server.NotFoundResponse(ctx)
-		}
+	fmt.Println(filePath)
 
-		return server.OkResponseWithFile(ctx, fileData)
+	fileData, err := os.ReadFile(filePath)
+
+	if err != nil {
+		return server.NotFoundResponse(ctx)
+	}
+
+	return server.OkResponseWithFile(ctx, fileData)
 }
 
 func (controller RequestController) writeFile(ctx server.Context) server.HttpResponse {
@@ -53,7 +53,7 @@ func (controller RequestController) writeFile(ctx server.Context) server.HttpRes
 
 	fileName := ctx.Request.PathParams["fileName"]
 	filePath := path.Join(fileDir, fileName)
-	
+
 	file, err := os.Create(filePath)
 
 	if err != nil {
