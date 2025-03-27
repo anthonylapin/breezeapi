@@ -118,27 +118,3 @@ func CreatedResponse(ctx Context) HttpResponse {
 	return NewResponse(ctx, 201)
 }
 
-// func (response *HttpResponse) ToString() (string, error) {
-// 	fmt.Println(response)
-// 	var sb strings.Builder
-
-// 	// Response line
-// 	statusCodeMessage, statusCodeMessageExists := STATUS_CODE_TO_MESSAGE_MAP[response.Code]
-
-// 	if !statusCodeMessageExists {
-// 		return "", fmt.Errorf("Failed to find status code message for the %d code", response.Code)
-// 	}
-
-// 	sb.WriteString(fmt.Sprintf("%s %d %s\r\n", response.HttpVersion, response.Code, statusCodeMessage))
-
-// 	if response.Headers != nil {
-// 		for headerKey, headerValue := range response.Headers {
-// 			sb.WriteString(fmt.Sprintf("%s: %s\r\n", headerKey, headerValue))
-// 		}
-// 	}
-// 	sb.WriteString("\r\n") // after headers
-
-// 	sb.WriteString(response.Data)
-
-// 	return sb.String(), nil
-// }
